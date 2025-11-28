@@ -5,6 +5,7 @@ import avatar from "../../assets/img/avatar/file.png";
 const Header = ({ title, setSearchQuery }) => {
   return (
     <header className="admin-header">
+      {/* <teste/> */}
 
       {/* BOTÃO HAMBÚRGUER (mobile/tablet) */}
       <button className="header-hamburger" />
