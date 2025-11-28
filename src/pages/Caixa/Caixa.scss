@@ -1,0 +1,1423 @@
+/* ==========================================
+   CAIXA (PDV) — ESTILOS GERAIS
+   ========================================== */
+
+.caixa-page {
+  display: grid;
+  grid-template-columns: 1fr 380px 380px;
+  gap: 25px;
+  padding: 25px;
+  background: #fafafa;
+  min-height: calc(100vh - 80px);
+  font-family: "Poppins", sans-serif;
+}
+
+/* ==========================================
+   COLUNA ESQUERDA — PRODUTOS
+   ========================================== */
+
+.caixa-left {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Barra de busca + botão ---------- */
+
+.caixa-search-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.caixa-search-input {
+  flex: 1;
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: 1.5px solid #d1d5db;
+  background: #ffffff;
+  font-size: 14px;
+  transition: 0.2s;
+
+  &:focus {
+    border-color: #6d28d9;
+    outline: none;
+  }
+}
+
+.btn-all-categories {
+  background: #6d28d9;
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+
+  &:hover {
+    background: #5b21b6;
+  }
+}
+
+/* ==========================================
+   LISTA VERTICAL DE CATEGORIAS
+   ========================================== */
+
+.caixa-category-list {
+  background: #fff;
+  border-radius: 14px;
+  padding: 15px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.category-list-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #f5f5f7;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: 0.2s;
+
+  img {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+  }
+
+  &:hover {
+    border-color: #6d28d9;
+    background: #f3e8ff;
+  }
+
+  &.active {
+    border-color: #6d28d9;
+    background: #ede9fe;
+  }
+
+  span {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+  }
+}
+
+/* ==========================================
+   CARROSSEL DE CATEGORIAS
+   ========================================== */
+
+.caixa-category-carousel {
+  overflow-x: auto;
+  overflow-y: visible;   // 🔥 permite hover expandir sem cortar
+  padding-top: 6px;      // 🔥 espaço extra para o item subir no hover
+  padding-bottom: 8px;
+  margin-bottom: 18px;
+  position: relative;
+
+  &::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 10px;
+  }
+}
+
+.carousel-track {
+  display: flex;
+  gap: 12px;
+  padding-right: 14px;
+}
+
+.carousel-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 108px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  cursor: pointer;
+  transition: 0.2s;
+  border: 2px solid transparent;
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+
+  &.active {
+    border-color: #6d28d9;
+    background: #f3e8ff;
+  }
+
+  .carousel-img-wrapper {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 4px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 6px;
+      object-fit: cover;
+    }
+  }
+
+  span {
+    font-size: 12px;
+    font-weight: 600;
+    color: #333;
+  }
+}
+
+/* ==========================================
+   GRID DE PRODUTOS
+   ========================================== */
+
+.caixa-products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+  gap: 16px;
+}
+
+.product-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  transition: 0.2s;
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+
+  .product-image img {
+    width: 100%;
+    height: 135px;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+
+  .product-info h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 3px;
+  }
+
+  .product-price {
+    font-size: 14px;
+    font-weight: 700;
+    color: #6d28d9;
+  }
+}
+
+.no-products {
+  text-align: center;
+  color: #999;
+  margin-top: 20px;
+}
+
+/* ==========================================
+   COLUNA CENTRAL — PEDIDO ATUAL
+   ========================================== */
+
+.caixa-center {
+  display: flex;
+}
+
+.order-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  width: 100%;
+}
+
+.order-card h2 {
+  font-size: 19px;
+  font-weight: 700;
+  color: #6d28d9;
+  margin-bottom: 18px;
+}
+
+.order-empty {
+  text-align: center;
+  color: #8b8b8b;
+  padding: 20px 0;
+}
+
+.order-items {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-height: 420px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  background: #fafafa;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #ececec;
+}
+
+.order-item-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  img {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+}
+
+.order-item-info {
+  display: flex;
+  flex-direction: column;
+
+  .order-item-name {
+    font-size: 14px;
+    font-weight: 600;
+  }
+}
+
+.order-item-unit {
+  font-size: 12px;
+  color: #555;
+  margin-top: 2px;
+}
+
+.order-item-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.order-qty {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  button {
+    width: 26px;
+    height: 26px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    background: #e5e7eb;
+    font-size: 16px;
+    font-weight: 700;
+
+    &:hover {
+      background: #d1d5db;
+    }
+  }
+}
+
+.order-item-total {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.order-remove {
+  background: #fee2e2;
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 700;
+  color: #ef4444;
+
+  &:hover {
+    background: #fecaca;
+  }
+}
+
+.order-notes {
+  width: 100%;
+  height: 60px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1.5px solid #d1d5db;
+  resize: none;
+  margin-top: 14px;
+
+  &:focus {
+    border-color: #6d28d9;
+    outline: none;
+  }
+}
+
+.btn-clear-order {
+  width: 100%;
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: 12px;
+  background: #fee2e2;
+  border: none;
+  cursor: pointer;
+  color: #b91c1c;
+  font-weight: 600;
+
+  &:hover {
+    background: #fecaca;
+  }
+}
+
+/* ==========================================
+   COLUNA DIREITA — FINALIZAÇÃO
+   ========================================== */
+
+.caixa-right {
+  display: flex;
+}
+
+.checkout-card {
+  background: #fff;
+  padding: 22px;
+  border-radius: 16px;
+  width: 100%;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.checkout-card h2 {
+  font-size: 19px;
+  font-weight: 700;
+  color: #6d28d9;
+  margin-bottom: 18px;
+}
+
+.checkout-section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.checkout-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+
+  strong {
+    font-size: 15px;
+    color: #111;
+  }
+}
+
+.checkout-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  input {
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1.5px solid #d1d5db;
+    background: #f9fafb;
+
+    &:focus {
+      outline: none;
+      border-color: #6d28d9;
+      background: #fff;
+    }
+  }
+}
+
+.coupon-row {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-apply-coupon {
+  padding: 10px 14px;
+  background: #6d28d9;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+
+  &:hover {
+    background: #5b21b6;
+  }
+}
+
+.coupon-applied {
+  color: #059669;
+  font-size: 13px;
+}
+
+/* ---------- Resumo ---------- */
+
+.checkout-summary {
+  background: #fafafa;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid #eee;
+}
+
+.summary-row,
+.summary-total-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.summary-row.discount span:last-child {
+  color: #b91c1c;
+}
+
+.summary-total-row {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: 700;
+
+  .label {
+    color: #6d28d9;
+  }
+
+  .value {
+    color: #6d28d9;
+  }
+}
+
+/* ---------- Pagamento ---------- */
+
+.checkout-payment {
+  margin-top: 22px;
+
+  .payment-title {
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+}
+
+.payment-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 1REM;
+}
+
+.payment-btn {
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  padding: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+  font-weight: 600;
+  text-align: center;
+
+  &:hover {
+    background: #e5e7eb;
+  }
+
+  &.selected {
+    background: #d1fae5;
+    border-color: #10b981;
+    color: #065f46;
+  }
+}
+
+.btn-finish-sale {
+  width: 100%;
+  margin-top: 22px;
+  padding: 14px;
+  background: #facc15;
+  color: #3b0764;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+
+  &:hover {
+    background: #eab308;
+  }
+}
+
+/* ==========================================
+   MODAL DE RECIBO / CUPOM FISCAL
+   ========================================== */
+
+.receipt-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.receipt-modal {
+  background: #fff;
+  border-radius: 16px;
+  padding: 18px;
+  max-width: 380px;
+  width: 100%;
+  box-shadow: 0 3px 14px rgba(0,0,0,0.18);
+}
+
+.receipt-paper {
+  background: #fafafa;
+  padding: 18px;
+  border-radius: 10px;
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+}
+
+.receipt-paper hr {
+  border: none;
+  border-top: 1px dashed #bbb;
+  margin: 10px 0;
+}
+
+.receipt-item-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.receipt-section {
+  margin-top: 10px;
+}
+
+.receipt-line {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+
+  &.total {
+    font-weight: 700;
+    font-size: 16px;
+  }
+}
+
+.receipt-footer {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.receipt-actions {
+  margin-top: 18px;
+  text-align: center;
+}
+
+.receipt-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+
+  .btn-print,
+  .btn-close {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  .btn-print {
+    background: #10b981;
+    color: #fff;
+
+    &:hover {
+      background: #059669;
+    }
+  }
+
+  .btn-close {
+    background: #e5e7eb;
+  }
+}
+
+/* ==========================================
+   RESPONSIVIDADE
+   ========================================== */
+
+@media (max-width: 1080px) {
+  .caixa-page {
+    grid-template-columns: 1fr;
+  }
+
+  .caixa-center,
+  .caixa-right {
+    width: 100%;
+  }
+}
+
+
+/* ==========================================
+   CAIXA (PDV) — LAYOUT GERAL
+   ========================================== */
+
+.caixa-page {
+  display: grid;
+  grid-template-columns: 1fr 380px 380px;
+  gap: 22px;
+  padding: 22px;
+  background: #fafafa;
+  font-family: "Poppins", sans-serif;
+  width: 100%;
+  overflow-x: hidden; // evita quebra da tela
+}
+
+/* ==========================================
+   COLUNA ESQUERDA — PRODUTOS
+   ========================================== */
+
+.caixa-left {
+  display: flex;
+  flex-direction: column;
+  min-width: 0; // impede quebrar layout
+}
+
+/* ---------- BUSCA + BOTÃO CATEGORIAS ---------- */
+
+.caixa-search-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.caixa-search-input {
+  flex: 1;
+  padding: 11px 16px;
+  border-radius: 12px;
+  border: 1.5px solid #d1d5db;
+  background: #ffffff;
+  transition: 0.2s;
+  font-size: 14px;
+
+  &:focus {
+    border-color: #6d28d9;
+    background: #faf5ff;
+  }
+}
+
+.btn-all-categories {
+  background: #6d28d9;
+  color: #fff;
+  padding: 9px 16px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+
+  &:hover {
+    background: #5b21b6;
+  }
+}
+
+/* ==========================================
+   LISTA VERTICAL DE CATEGORIAS
+   ========================================== */
+
+.caixa-category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  background: #fff;
+  border-radius: 14px;
+  margin-bottom: 14px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.category-list-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: #f5f5f7;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: 0.2s;
+
+  img {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  &:hover {
+    border-color: #6d28d9;
+    background: #f3e8ff;
+  }
+
+  &.active {
+    background: #ede9fe;
+    border-color: #6d28d9;
+  }
+
+  span {
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+  }
+}
+
+/* ==========================================
+   CARROSSEL DE CATEGORIAS
+   ========================================== */
+
+.caixa-category-carousel {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  scrollbar-width: thin;
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+
+  &::-webkit-scrollbar {
+    height: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #c8b5ff;
+    border-radius: 8px;
+  }
+}
+
+.carousel-track {
+  display: flex;
+  gap: 12px;
+}
+
+.carousel-item {
+  min-width: 115px;
+  max-width: 115px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 10px 12px;
+  text-align: center;
+  border: 2px solid transparent;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  cursor: pointer;
+  transition: 0.2s;
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+
+  &.active {
+    border-color: #6d28d9;
+    background: #f3e8ff;
+  }
+
+  .carousel-img-wrapper {
+    width: 38px;
+    height: 38px;
+    margin: 0 auto 5px auto;
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+  }
+
+  span {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+  }
+}
+
+/* ==========================================
+   GRID DE PRODUTOS
+   ========================================== */
+
+.caixa-products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+  gap: 18px;
+}
+
+.product-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 12px;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  transition: 0.2s;
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+
+  img {
+    width: 100%;
+    height: 140px;
+    border-radius: 12px;
+    object-fit: cover;
+    margin-bottom: 8px;
+  }
+
+  .product-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+
+  .product-price {
+    color: #6d28d9;
+    font-size: 14px;
+    font-weight: 700;
+  }
+}
+
+/* ==========================================
+   COLUNA CENTRAL — PEDIDO
+   ========================================== */
+
+.caixa-center {
+  width: 100%;
+}
+
+.order-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.order-items {
+  max-height: 420px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ==========================================
+   FINALIZAÇÃO — COLUNA DIREITA
+   ========================================== */
+
+.checkout-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.checkout-field input {
+  height: 42px;
+  padding: 0 12px;
+  border-radius: 10px;
+  border: 1.5px solid #dcdcdc;
+
+  &:focus {
+    border-color: #6d28d9;
+    background: #faf5ff;
+  }
+}
+
+/* PAGAMENTO */
+
+.payment-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.payment-btn {
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  padding: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+
+  &:hover {
+    background: #e5e7eb;
+  }
+
+  &.selected {
+    background: #d1fae5;
+    border-color: #10b981;
+    color: #065f46;
+  }
+}
+
+/* BOTÃO FINALIZAR */
+
+.btn-finish-sale {
+  background: #facc15;
+  color: #3b0764;
+  padding: 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  width: 100%;
+  cursor: pointer;
+
+  &:hover {
+    background: #eab308;
+  }
+}
+
+/* ==========================================
+   RECIBO / CUPOM / NOTA
+   ========================================== */
+
+.receipt-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.receipt-modal {
+  background: #fff;
+  padding: 16px;
+  border-radius: 14px;
+  width: 380px;
+  box-shadow: 0 3px 14px rgba(0,0,0,0.15);
+}
+
+/* ==========================================
+   RESPONSIVIDADE
+   ========================================== */
+
+@media (max-width: 1080px) {
+  .caixa-page {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+
+/* ============================================================
+   NOVO LAYOUT — ITENS DO CARRINHO (VERSÃO PROFISSIONAL)
+   ============================================================ */
+
+.order-items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: 420px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+.order-item-v2 {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #ececec;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* --------------------
+      HEADER
+----------------------*/
+
+.order-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  img {
+    width: 52px;
+    height: 52px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+}
+
+.item-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111;
+}
+
+/* Remove */
+.remove-btn {
+  width: 30px;
+  height: 30px;
+  background: #fee2e2;
+  color: #ef4444;
+  font-size: 20px;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s ease;
+
+  &:hover {
+    background: #fecaca;
+  }
+}
+
+/* --------------------
+      FOOTER
+----------------------*/
+
+.order-item-footer {
+  display: grid;
+  grid-template-columns: 120px 1fr 1fr;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Quantidade */
+.qty-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  button {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    border: none;
+    background: #e5e7eb;
+    font-size: 16px;
+    cursor: pointer;
+
+    &:hover {
+      background: #d1d5db;
+    }
+  }
+
+  span {
+    font-size: 15px;
+    font-weight: 600;
+  }
+}
+
+.unit-price {
+  font-size: 14px;
+  color: #555;
+}
+
+.total-price {
+  font-size: 15px;
+  font-weight: 700;
+  color: #6d28d9;
+  text-align: right;
+}
+
+/* ------------------------------
+   PRODUTO ADICIONADO AO CARRINHO
+------------------------------ */
+.product-card.added {
+  border: 2px solid #6d28d9;
+  background: #f6f0ff;
+  box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.25);
+
+  transform: scale(1.02);
+}
+
+.product-added-tag {
+  margin-top: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #6d28d9;
+  background: #ede9fe;
+  padding: 3px 8px;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+
+/* ---------- Modo impressão ---------- */
+@media print {
+
+  /* remove TUDO da interface */
+  body * {
+    visibility: hidden !important;
+  }
+
+  /* mostra SOMENTE o recibo */
+  .receipt-paper, 
+  .receipt-paper * {
+    visibility: visible !important;
+  }
+
+  /* posiciona no topo da página impressa */
+  .receipt-paper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 58mm;     /* Para bobina 58mm */
+    max-width: 58mm;
+    padding: 0;
+    box-shadow: none !important;
+    background: #fff !important;
+  }
+
+  /* remove botões da modal */
+  .receipt-actions {
+    display: none !important;
+  }
+
+  /* remove fundo escuro */
+  .receipt-overlay,
+  .receipt-modal {
+    background: none !important;
+    box-shadow: none !important;
+  }
+
+  /* remove margens padrão */
+  @page {
+    margin: 0 !important;
+    size: auto;
+  }
+}
+/* ============================================================
+   📱📲  RESPONSIVO – TABLET E MOBILE
+   ============================================================ */
+
+/* =====================  TABLET (até 1080px)  ===================== */
+@media (max-width: 1080px) {
+
+  .caixa-page {
+    grid-template-columns: 1fr;
+    padding: 15px;
+    gap: 18px;
+  }
+
+  .caixa-center,
+  .caixa-right {
+    width: 100%;
+  }
+
+  .order-card,
+  .checkout-card {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .caixa-products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 14px;
+  }
+
+  .carousel-item {
+    min-width: 105px;
+  }
+}
+
+
+/* =====================  MOBILE (até 720px)  ===================== */
+@media (max-width: 720px) {
+
+  /* --------- GRID PRINCIPAL VIRA 1 COLUNA --------- */
+  .caixa-page {
+    grid-template-columns: 1fr;
+    padding: 12px;
+    gap: 14px;
+  }
+
+  /* --------- Busca + Botão --------- */
+  .caixa-search-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .btn-all-categories {
+    width: 100%;
+    text-align: center;
+    padding: 11px 0;
+  }
+
+  /* --------- Carrossel mais compacto --------- */
+  .carousel-item {
+    min-width: 88px;
+    max-width: 88px;
+    padding: 8px 10px;
+
+    .carousel-img-wrapper {
+      width: 30px;
+      height: 30px;
+    }
+
+    span {
+      font-size: 10px;
+    }
+  }
+
+  /* --------- GRID DOS PRODUTOS --------- */
+  .caixa-products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .product-card {
+    padding: 10px;
+
+    img {
+      height: 110px;
+    }
+
+    .product-info h3 {
+      font-size: 13px;
+    }
+
+    .product-price {
+      font-size: 13px;
+    }
+  }
+
+  /* ====================================================
+      🛒 PEDIDO (Carrinho)
+     ==================================================== */
+
+  .order-card {
+    padding: 16px;
+  }
+
+  .order-item-v2 {
+    padding: 10px 12px;
+  }
+
+  .order-item-header img {
+    width: 45px;
+    height: 45px;
+  }
+
+  .order-item-footer {
+    grid-template-columns: 100px 1fr 1fr;
+  }
+
+  .qty-box button {
+    width: 26px;
+    height: 26px;
+  }
+
+  .unit-price {
+    font-size: 13px;
+  }
+
+  .total-price {
+    font-size: 14px;
+  }
+
+  .order-notes {
+    height: 55px;
+  }
+
+  .btn-clear-order {
+    padding: 10px;
+  }
+
+  /* ====================================================
+      💳 FINALIZAÇÃO (Checkout)
+     ==================================================== */
+
+  .checkout-card {
+    padding: 18px;
+  }
+
+  .checkout-row {
+    font-size: 13px;
+
+    strong {
+      font-size: 14px;
+    }
+  }
+
+  .checkout-field input {
+    padding: 9px 10px;
+    font-size: 14px;
+  }
+
+  .coupon-row {
+    flex-direction: column;
+  }
+
+  .btn-apply-coupon {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .payment-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .payment-btn {
+    padding: 10px 8px;
+    font-size: 13px;
+  }
+
+  .btn-finish-sale {
+    padding: 12px;
+    font-size: 15px;
+  }
+
+  /* ====================================================
+      📄 RECIBO (modal)
+     ==================================================== */
+
+  .receipt-modal {
+    width: 95%;
+    padding: 12px;
+  }
+
+  .receipt-paper {
+    padding: 14px;
+    font-size: 13px;
+  }
+
+  .receipt-item-row {
+    font-size: 13px;
+  }
+
+  .receipt-buttons {
+    flex-direction: column;
+
+    .btn-print,
+    .btn-close {
+      width: 100%;
+      padding: 10px;
+    }
+  }
+}
+

@@ -1,55 +1,42 @@
-// import logo from '../../assets/img/header/header__logo.svg';
-// import logoMobile from '../../assets/img/header/header__logo-mobile.svg';
-import menu from '../../assets/img/header/header__menu.svg';
-import close from '../../assets/img/header/menu__close.svg';
-import logo from '../../assets/img/header/Logo.svg'
+import React from "react";
+import "./Header.scss";
+import avatar from "../../assets/img/avatar/file.png";
 
-const Header = () => {
-
-  // Links
-  const Header = [
-    { name: 'Home', link: '#Description-main' },
-    { name: 'Nosso Espaço', link: '#What-container-main' },
-    { name: 'Equipe', link: '#Photos-main' },
-    { name: 'Contato', link: '#Contact-main' },
-  ];
-
-  // Variavel para trocar de imagem
-  const logoToShow = window.innerWidth > 1024 ? logo : logo;
-
-
+const Header = ({ title, setSearchQuery }) => {
   return (
-    <div className="header-main">
-      <header className="header">
-        {/* LOGO */}
-        <div className="header-content">
-          <a href='#'><img src={logoToShow} alt="Logo" /></a>
-        </div>
-        {/* FIM DO LOGO */}
-        {/* MENU DO HEADER */}
-        <nav className="nav-links">
-          {Header.map((item, id) => (
-            <a className='LinksHeader' href={item.link} key={id}>
-              {item.name}
-            </a>
-          ))}
-        </nav>
-      </header>
-      {/* FIM DO HEADER */}
+    <header className="admin-header">
 
+      {/* BOTÃO HAMBÚRGUER (mobile/tablet) */}
+      <button className="header-hamburger" />
 
-      {/* MENU SIDEBAR */}
-      {/* <nav className={sidebar ${isMenuOpen ? 'open' : ''}}>
-        <img src={close} className="close-button" onClick={toggleMenu} />
-        <div className='sidebar-options'>
-          {Header.map((item, id) => (
-            <a className='LinksSideBar' href={item.link} key={id}>
-              {item.name}
-            </a>
-          ))}
+      {/* LOGO + TITULO */}
+      <div className="header-left">
+        <h1 className="header-logo">Milk Shake Mix</h1>
+        <span className="header-section">{title}</span>
+      </div>
+
+      {/* SEARCH */}
+      <div className="header-search">
+        <input
+          type="text"
+          placeholder="Buscar..."
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+        <span className="search-icon"></span>
+      </div>
+
+      {/* USER */}
+      <div className="header-user">
+        <div className="user-avatar-wrapper">
+          <img src={avatar} alt="User" className="user-avatar" />
         </div>
-      </nav> */}
-    </div>
+
+        <div className="user-info">
+          <span className="user-name">George Silva</span>
+          <span className="user-role">Administrador</span>
+        </div>
+      </div>
+    </header>
   );
 };
 

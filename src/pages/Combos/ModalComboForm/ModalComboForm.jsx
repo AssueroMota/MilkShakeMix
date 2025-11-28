@@ -1,0 +1,458 @@
+import React, { useEffect, useMemo, useState } from "react";
+import "./ModalComboForm.scss";
+
+const ModalComboForm = ({
+  open,
+  combo,
+  mode, // "add" | "edit"
+  onClose,
+  onSave,
+  products = [],
+  categories = [],
+}) => {
+  const [name, setName] = useState("");
+  const [category, setCategory] = useState(categories[0] || "");
+  const [description, setDescription] = useState("");
+  const [active, setActive] = useState(true);
+
+  const [imageFile, setImageFile] = useState(null);
+  const [preview, setPreview] = useState(null);
+
+  const [discountType, setDiscountType] = useState("none"); // "none" | "percent" | "value"
+  const [discountValue, setDiscountValue] = useState(0);
+
+  const [selectedProductIds, setSelectedProductIds] = useState([]);
+
+  // filtros da lista de produtos
+  const [search, setSearch] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("all");
+
+  // PRE-LOAD EM MODO EDIT
+  useEffect(() => {
+    if (combo) {
+      setName(combo.name || "");
+      setCategory(combo.category || categories[0] || "");
+      setDescription(combo.description || "");
+      setActive(combo.active ?? true);
+      setPreview(combo.image || null);
+      setDiscountType(combo.discountType || "none");
+      setDiscountValue(combo.discountValue || 0);
+      setSelectedProductIds(combo.items?.map((i) => i.id) || []);
+    } else {
+      // modo add
+      setName("");
+      setCategory(categories[0] || "");
+      setDescription("");
+      setActive(true);
+      setPreview(null);
+      setImageFile(null);
+      setDiscountType("none");
+      setDiscountValue(0);
+      setSelectedProductIds([]);
+    }
+  }, [combo, categories]);
+
+  if (!open) return null;
+
+  const onFileChange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    setImageFile(file);
+    setPreview(URL.createObjectURL(file));
+  };
+
+  // Produtos filtrados para a lista de seleção
+  const filteredProducts = useMemo(() => {
+    let list = [...products];
+
+    if (categoryFilter !== "all") {
+      list = list.filter((p) => p.category === categoryFilter);
+    }
+
+    if (search.trim()) {
+      const q = search.toLowerCase();
+      list = list.filter(
+        (p) =>
+          p.name.toLowerCase().includes(q) ||
+          p.category.toLowerCase().includes(q)
+      );
+    }
+
+    return list;
+  }, [products, search, categoryFilter]);
+
+  // Itens selecionados do combo
+  const selectedItems = useMemo(
+    () => products.filter((p) => selectedProductIds.includes(p.id)),
+    [products, selectedProductIds]
+  );
+
+  // Cálculo de preços
+  const { originalPrice, finalPrice, discountAmount } = useMemo(() => {
+    const total = selectedItems.reduce((sum, p) => sum + p.price, 0);
+
+    let discount = 0;
+    if (discountType === "percent") {
+      const perc = Number(discountValue) || 0;
+      discount = (total * perc) / 100;
+    } else if (discountType === "value") {
+      discount = Number(discountValue) || 0;
+    }
+
+    let final = total - discount;
+    if (final < 0) final = 0;
+
+    return {
+      originalPrice: total,
+      finalPrice: final,
+      discountAmount: discount,
+    };
+  }, [selectedItems, discountType, discountValue]);
+
+  const toggleProduct = (id) => {
+    setSelectedProductIds((prev) =>
+      prev.includes(id) ? prev.filter((pid) => pid !== id) : [...prev, id]
+    );
+  };
+
+  const handleSubmit = (e) => {
+    e?.preventDefault();
+
+    if (!name.trim()) {
+      alert("Informe o nome do combo.");
+      return;
+    }
+
+    if (!category.trim()) {
+      alert("Selecione ou informe uma categoria.");
+      return;
+    }
+
+    if (!description.trim()) {
+      alert("A descrição é obrigatória.");
+      return;
+    }
+
+    if (selectedItems.length === 0) {
+      alert("Selecione pelo menos 1 produto para o combo.");
+      return;
+    }
+
+    const normalizedDiscountValue =
+      discountType === "none" ? 0 : Number(discountValue) || 0;
+
+onSave({
+  name: name.trim(),
+  category: category.trim(),
+  description: description.trim(),
+  active,
+  items: selectedItems.map((i) => ({
+    id: i.id,
+    name: i.name,
+    price: Number(i.price || 0),
+    image: i.image,
+    category: i.category,
+  })),
+  discountType,
+  discountValue: normalizedDiscountValue,
+  totalOriginal: Number(originalPrice || 0),
+  totalFinal: Number(finalPrice || 0),
+  image: imageFile,
+  preview,
+});
+
+  };
+
+  return (
+    <div className="modal-overlay fade-in" onClick={onClose}>
+      <div
+        className="modal-combo-form slide-up"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* HEADER */}
+        <div className="modal-form-header">
+          <h2>{mode === "add" ? "Adicionar Combo" : "Editar Combo"}</h2>
+          <button className="close-btn" onClick={onClose}>
+            ×
+          </button>
+        </div>
+
+        {/* BODY */}
+        <div className="modal-form-body">
+          {/* COLUNA ESQUERDA */}
+          <div className="form-left">
+            <div className="image-box">
+              {preview ? (
+                <img src={preview} alt="preview combo" />
+              ) : (
+                <span className="placeholder">Sem imagem</span>
+              )}
+
+              <label className="btn-upload">
+                Selecionar Imagem
+                <input type="file" accept="image/*" onChange={onFileChange} />
+              </label>
+            </div>
+
+            <div className="switch-box">
+              <label>Status do combo</label>
+              <label className="switch">
+                <input
+                  type="checkbox"
+                  checked={active}
+                  onChange={(e) => setActive(e.target.checked)}
+                />
+                <span className="slider"></span>
+              </label>
+            </div>
+
+            <div className="resume-box">
+              <h4>Resumo de preços</h4>
+
+              <p>
+                <span>Total dos produtos:</span>
+                <strong>
+                  {originalPrice.toLocaleString("pt-BR", {
+                    style: "currency",
+                    currency: "BRL",
+                  })}
+                </strong>
+              </p>
+
+              <p>
+                <span>Desconto:</span>
+                <strong>
+                  {discountAmount > 0
+                    ? discountType === "percent"
+                      ? `${Number(discountValue || 0)}%`
+                      : discountAmount.toLocaleString("pt-BR", {
+                          style: "currency",
+                          currency: "BRL",
+                        })
+                    : "Nenhum"}
+                </strong>
+              </p>
+
+              <p className="resume-final">
+                <span>Preço final do combo:</span>
+                <strong>
+                  {finalPrice.toLocaleString("pt-BR", {
+                    style: "currency",
+                    currency: "BRL",
+                  })}
+                </strong>
+              </p>
+            </div>
+          </div>
+
+          {/* COLUNA DIREITA */}
+          <div className="form-right">
+            {/* CAMPOS PRINCIPAIS */}
+            <div className="form-group">
+              <label>Nome do Combo</label>
+              <input
+                type="text"
+                placeholder="Ex: Combo Burger Deluxe"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Categoria</label>
+              <select
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+              >
+                {categories.map((c) => (
+                  <option key={c} value={c}>
+                    {c}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="form-group">
+              <label>Descrição (obrigatória)</label>
+              <input
+                type="text"
+                maxLength={140}
+                placeholder="Resumo curto do combo..."
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+              <small className="helper-text">
+                Dica: use uma frase de impacto para o card.
+              </small>
+            </div>
+
+            {/* DESCONTO */}
+            <div className="discount-section">
+              <label>Desconto do combo</label>
+
+              <div className="discount-modes">
+                <button
+                  type="button"
+                  className={`mode-btn ${
+                    discountType === "none" ? "active" : ""
+                  }`}
+                  onClick={() => setDiscountType("none")}
+                >
+                  Sem desconto
+                </button>
+
+                <button
+                  type="button"
+                  className={`mode-btn ${
+                    discountType === "percent" ? "active" : ""
+                  }`}
+                  onClick={() => setDiscountType("percent")}
+                >
+                  %
+                </button>
+
+                <button
+                  type="button"
+                  className={`mode-btn ${
+                    discountType === "value" ? "active" : ""
+                  }`}
+                  onClick={() => setDiscountType("value")}
+                >
+                  R$
+                </button>
+              </div>
+
+              {discountType === "percent" && (
+                <div className="discount-input">
+                  <input
+                    type="number"
+                    min={0}
+                    max={100}
+                    value={discountValue}
+                    onChange={(e) => setDiscountValue(e.target.value)}
+                    placeholder="Ex: 10"
+                  />
+                  <span className="suffix">%</span>
+                </div>
+              )}
+
+              {discountType === "value" && (
+                <div className="discount-input">
+                  <span className="prefix">R$</span>
+                  <input
+                    type="number"
+                    min={0}
+                    step="0.01"
+                    value={discountValue}
+                    onChange={(e) => setDiscountValue(e.target.value)}
+                    placeholder="Ex: 10,00"
+                  />
+                </div>
+              )}
+            </div>
+
+            {/* SELEÇÃO DE PRODUTOS */}
+            <div className="products-section">
+              <div className="products-header">
+                <div>
+                  <label>Produtos do combo</label>
+                  <p className="products-subtitle">
+                    Selecione os produtos que farão parte deste combo.
+                  </p>
+                </div>
+
+                <span className="badge-count">
+                  {selectedItems.length} selecionado
+                  {selectedItems.length !== 1 ? "s" : ""}
+                </span>
+              </div>
+
+              {/* FILTROS / BUSCA */}
+              <div className="products-filters">
+                <div className="search-box">
+                  <input
+                    type="text"
+                    placeholder="Buscar produto por nome ou categoria..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                  />
+                </div>
+
+                <div className="category-filter">
+                  <select
+                    value={categoryFilter}
+                    onChange={(e) => setCategoryFilter(e.target.value)}
+                  >
+                    <option value="all">Todas categorias</option>
+                    {Array.from(new Set(products.map((p) => p.category))).map(
+                      (cat) => (
+                        <option key={cat} value={cat}>
+                          {cat}
+                        </option>
+                      )
+                    )}
+                  </select>
+                </div>
+              </div>
+
+              {/* LISTA DE PRODUTOS */}
+              <div className="products-list">
+                {filteredProducts.length === 0 && (
+                  <p className="empty-text">
+                    Nenhum produto encontrado com os filtros atuais.
+                  </p>
+                )}
+
+                {filteredProducts.map((p) => {
+                  const checked = selectedProductIds.includes(p.id);
+
+                  return (
+                    <label
+                      key={p.id}
+                      className={`product-item ${checked ? "selected" : ""}`}
+                    >
+                      <div className="left">
+                        <input
+                          type="checkbox"
+                          checked={checked}
+                          onChange={() => toggleProduct(p.id)}
+                        />
+                        <img src={p.image} alt={p.name} />
+                        <div className="info">
+                          <span className="name">{p.name}</span>
+                          <span className="category">{p.category}</span>
+                        </div>
+                      </div>
+
+                      <div className="right">
+                        <span className="price">
+                          {p.price.toLocaleString("pt-BR", {
+                            style: "currency",
+                            currency: "BRL",
+                          })}
+                        </span>
+                      </div>
+                    </label>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* FOOTER */}
+        <div className="modal-form-footer">
+          <button className="btn-secondary" onClick={onClose}>
+            Cancelar
+          </button>
+          <button className="btn-primary" onClick={handleSubmit}>
+            Salvar Combo
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ModalComboForm;

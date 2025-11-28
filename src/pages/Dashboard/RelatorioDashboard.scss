@@ -1,0 +1,212 @@
+.relatorio-wrapper {
+  padding: 40px;
+  font-family: "Inter", sans-serif;
+  color: #333;
+  background: #fff;
+}
+
+.relatorio-header {
+  text-align: center;
+  margin-bottom: 40px;
+
+  h1 {
+    font-size: 32px;
+    margin-bottom: 5px;
+  }
+
+  .data {
+    color: #555;
+    font-size: 15px;
+  }
+}
+
+.relatorio-section {
+  margin-bottom: 45px;
+
+  h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    margin-bottom: 12px;
+    line-height: 1.6;
+    color: #444;
+  }
+}
+
+.relatorio-lista {
+  list-style: none;
+
+  li {
+    margin-bottom: 6px;
+    font-size: 15px;
+  }
+}
+
+.relatorio-tabela {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  margin-bottom: 10px;
+
+  th, td {
+    border: 1px solid #e8e8e8;
+    padding: 10px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #fafafa;
+    font-weight: 600;
+  }
+}
+
+.relatorio-obs {
+  margin-top: 8px;
+  color: #555;
+}
+
+.recomendacoes li {
+  margin-bottom: 10px;
+}
+
+.relatorio-footer {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 13px;
+  color: #777;
+}
+
+
+/* ============================================================
+   📲 TABLET (ATÉ 1024px)
+   ============================================================ */
+@media (max-width: 1024px) {
+  .relatorio-wrapper {
+    padding: 30px;
+  }
+
+  .relatorio-header h1 {
+    font-size: 26px;
+  }
+
+  .relatorio-section h2 {
+    font-size: 20px;
+  }
+
+  .relatorio-tabela th,
+  .relatorio-tabela td {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .relatorio-lista li {
+    font-size: 14px;
+  }
+}
+
+
+/* ============================================================
+   📱 MOBILE (ATÉ 720px)
+   ============================================================ */
+@media (max-width: 720px) {
+  .relatorio-wrapper {
+    padding: 20px;
+  }
+
+  .relatorio-header {
+    margin-bottom: 28px;
+
+    h1 {
+      font-size: 22px;
+      line-height: 1.3;
+    }
+
+    .data {
+      font-size: 14px;
+    }
+  }
+
+  .relatorio-section {
+    margin-bottom: 32px;
+
+    h2 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 1.55;
+    }
+  }
+
+  .relatorio-lista li {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+
+  /* TABELA — scroll horizontal */
+  .relatorio-tabela {
+    display: block;
+    overflow-x: auto;
+    border-radius: 8px;
+
+    table {
+      width: 600px; /* permite deslizar */
+    }
+
+    th,
+    td {
+      font-size: 13px;
+      padding: 8px 10px;
+    }
+  }
+
+  .relatorio-obs {
+    font-size: 13px;
+  }
+
+  .recomendacoes li {
+    font-size: 14px;
+  }
+}
+
+
+/* ============================================================
+   📱 MOBILE PEQUENO (ATÉ 480px)
+   ============================================================ */
+@media (max-width: 480px) {
+  .relatorio-wrapper {
+    padding: 16px;
+  }
+
+  .relatorio-header h1 {
+    font-size: 20px;
+  }
+
+  .relatorio-section h2 {
+    font-size: 17px;
+  }
+
+  .relatorio-section p {
+    font-size: 13px;
+  }
+
+  .relatorio-lista li,
+  .recomendacoes li {
+    font-size: 13px;
+  }
+
+  .relatorio-tabela th,
+  .relatorio-tabela td {
+    font-size: 12px;
+    padding: 7px;
+  }
+
+  .relatorio-footer {
+    font-size: 12px;
+    margin-top: 25px;
+  }
+}

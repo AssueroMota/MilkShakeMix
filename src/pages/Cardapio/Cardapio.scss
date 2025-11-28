@@ -1,0 +1,320 @@
+/* ==========================================================
+   CARDÁPIO — ESTILO PREMIUM GLASS + SOMBRA ROXA
+   ========================================================== */
+
+.cardapio-page {
+  width: 100%;
+  margin: 0 auto;
+  padding: 40px 48px 60px;
+  font-family: "Inter", sans-serif;
+  background: linear-gradient(120deg, #f6f5ff, #faf9ff 40%, #ffffff);
+  animation: fadeIn 0.4s ease;
+
+  @media (max-width: 900px) {
+    padding: 28px 22px 40px;
+  }
+
+  @media (max-width: 600px) {
+    padding: 24px 16px 30px;
+  }
+}
+
+/* ==========================================================
+   HEADER
+   ========================================================== */
+
+.cardapio-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 32px;
+
+  @media (max-width: 780px) {
+    flex-direction: column;
+  }
+}
+
+.cardapio-header-text h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 38px;
+  font-weight: 700;
+  margin: 0 0 10px;
+  color: #1f1b2e;
+  background: linear-gradient(90deg, #6d28d9, #9333ea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  @media (max-width: 600px) {
+    font-size: 32px;
+  }
+}
+
+.cardapio-header-text p {
+  margin: 0;
+  font-size: 15px;
+  color: #6b7280;
+  max-width: 520px;
+}
+
+/* ==========================================================
+   CAMPO DE BUSCA
+   ========================================================== */
+
+.cardapio-search-row {
+  margin-bottom: 28px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 16px 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(14px);
+  font-size: 15px;
+  color: #111827;
+  transition: 0.15s ease;
+  box-shadow: 0 8px 22px rgba(139, 92, 246, 0.15);
+
+  &::placeholder {
+    color: #9ca3af;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: #8b5cf6;
+    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.35);
+    background: rgba(255, 255, 255, 0.85);
+  }
+}
+
+/* ==========================================================
+   SEÇÕES
+   ========================================================== */
+
+.cardapio-section {
+  margin-bottom: 40px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #2d1f41;
+  }
+
+  .items-count {
+    font-size: 14px;
+    color: #6b7280;
+  }
+}
+
+.btn-clear-filter {
+  background: transparent;
+  border: none;
+  color: #8b5cf6;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 12px;
+  transition: 0.15s;
+
+  &:hover {
+    background: rgba(139, 92, 246, 0.08);
+    color: #7c3aed;
+  }
+}
+
+/* ==========================================================
+   CATEGORIAS
+   ========================================================== */
+
+.categories-row {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 10px 0;
+  scroll-behavior: smooth;
+
+  &::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #c7c8d1;
+    border-radius: 999px;
+  }
+}
+
+.category-item {
+  min-width: 130px;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 20px;
+  border: 1px solid rgba(139, 92, 246, 0.22);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: 0.2s ease, transform 0.18s;
+  box-shadow: 0 6px 18px rgba(139, 92, 246, 0.15);
+
+  .category-thumb {
+    width: 60px;
+    height: 60px;
+    border-radius: 999px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  span {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2d1f41;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(139, 92, 246, 0.25);
+  }
+
+  &.active {
+    background: rgba(243, 232, 255, 0.9);
+    border-color: #8b5cf6;
+    box-shadow: 0 12px 32px rgba(139, 92, 246, 0.35);
+  }
+}
+
+/* ==========================================================
+   PRODUTOS
+   ========================================================== */
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 26px;
+
+  @media (max-width: 700px) {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+}
+
+.product-card {
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 16px 36px rgba(139, 92, 246, 0.18);
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: 0.22s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 42px rgba(139, 92, 246, 0.25);
+  }
+}
+
+.product-media img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+
+  @media (max-width: 600px) {
+    height: 150px;
+  }
+}
+
+.product-body {
+  padding: 18px 20px;
+
+  h3 {
+    margin: 0 0 6px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #2d1f41;
+  }
+
+  .description {
+    margin: 0 0 14px;
+    font-size: 14px;
+    color: #6b7280;
+    min-height: 40px;
+  }
+}
+
+.product-footer .price {
+  font-size: 20px;
+  font-weight: 700;
+  color: #8b5cf6;
+}
+
+/* ==========================================================
+   ESTADO SEM RESULTADOS
+   ========================================================== */
+
+.no-products {
+  grid-column: 1/-1;
+  text-align: center;
+  padding: 34px 0;
+  color: #9ca3af;
+  font-size: 15px;
+}
+
+/* ==========================================================
+   ANIMAÇÕES
+   ========================================================== */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* CARD já no carrinho */
+.product-card.in-cart {
+  border: 2px solid #a855f7 !important;
+  position: relative;
+}
+
+.product-card.in-cart:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 16px rgba(168, 85, 247, 0.25);
+}
+
+/* BADGE */
+.in-cart-badge {
+  position: absolute;
+  bottom: 10px;
+  right: 10px; /* 👈 movido para o lado direito */
+  background: #f3e8ff;
+  color: #7c3aed;
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  border: 1px solid #d8b4fe;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+  pointer-events: none;
+}
+

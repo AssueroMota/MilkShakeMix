@@ -2,76 +2,54 @@
   margin: 0;
 }
 
-.header-main {
-  // border: solid 2px red;
-  width: 100%;
-  position: fixed; // Torna o cabeçalho fixo
-  top: 0; // Fixa no topo da página
-  left: 0; // Alinha ao lado esquerdo da página
-  background-color: #fff; // Adicione uma cor de fundo para garantir visibilidade sobre o conteúdo
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25); // Adiciona sombra ao cabeçalho
-  z-index: 1000; // Garante que o cabeçalho fique acima do conteúdo
-  // Adicione um espaço superior para garantir que o conteúdo não fique escondido atrás do cabeçalho
-  padding-top: 10px;
-  padding-bottom: 10px;
-  
-  .header {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    width: 95%;
+/* ================================
+   RESET / NORMALIZE GLOBAL
+================================ */
 
-    .header-content {
-      img {
-        width: 628px;
-        height: 95px;
-        flex-shrink: 0;
-      }
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    .nav-links {
-      display: inline-flex;
-      align-items: center;
-      gap: 74px;
+html {
+  scroll-behavior: smooth;
+  font-size: 16px; // base para REM
+}
 
-      .LinksHeader {
-        font-family: Montserrat;
-        font-size: 20px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: normal;
-        text-decoration: none;
-        color: rgba(112, 112, 112, 0.70);
-        position: relative; // Necessário para o posicionamento do pseudo-elemento
-        transition: all ease-in-out .5s;
-        &:hover {
-          color: #032131;
-          font-family: Montserrat;
-          font-size: 20px;
-          font-style: normal;
-          font-weight: 700;
-          line-height: normal;
-        }
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #ffffff;
+  color: #111;
+  font-family: 'Inter', sans-serif;
+}
 
-        // Pseudo-elemento para o sublinhado
-        &::after {
-          content: ''; // Cria um pseudo-elemento vazio
-          display: block; // Faz o pseudo-elemento ocupar espaço
-          height: 2px; // Define a espessura do sublinhado
-          background-color: transparent; // Cor inicial do sublinhado
-          position: absolute; // Posiciona o pseudo-elemento em relação ao link
-          bottom: 0; // Alinha o sublinhado na parte inferior do link
-          left: 0;
-          right: 0; // Faz o sublinhado se estender por toda a largura do link
-          transition: background-color 0.5s; // Suaviza a transição da cor do sublinhado
-        }
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
 
-        // Estilo do sublinhado ao passar o mouse
-        &:hover::after {
-          background-color: #ECDF8D; // Cor do sublinhado ao passar o mouse
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
 
-        }
-      }
-    }
-  }
+input, button, textarea, select {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
 }
