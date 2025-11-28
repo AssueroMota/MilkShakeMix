@@ -20,3 +20,54 @@
   padding: 24px 32px;
   overflow-y: auto;
 }
+
+/* ================================================
+   📲 TABLET (ATÉ 1024px)
+   ================================================ */
+@media (max-width: 1024px) {
+  .layout-inner {
+    padding: 20px 24px;
+  }
+
+  .layout-content {
+    overflow: hidden;
+  }
+}
+
+/* ================================================
+   📱 MOBILE (ATÉ 720px)
+   ================================================ */
+@media (max-width: 720px) {
+
+  .layout-container {
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+  }
+
+  /* Conteúdo do lado direito vira tela cheia */
+  .layout-content {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background: #f5f5f7;
+    overflow: hidden;
+  }
+
+  /* Espaçamento menor e mais confortável */
+  .layout-inner {
+    flex: 1;
+    padding: 16px 18px;
+    overflow-y: auto;
+  }
+}
+
+/* ================================================
+   📱 MOBILE PEQUENO (ATÉ 480px)
+   ================================================ */
+@media (max-width: 480px) {
+  .layout-inner {
+    padding: 12px 14px;
+  }
+}

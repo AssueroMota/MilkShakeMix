@@ -186,3 +186,138 @@
     color: #e21f81;
     font-weight: 600;
 }
+
+/* ============================================================
+   📲 TABLET (até 1024px)
+   ============================================================ */
+@media (max-width: 1024px) {
+  .login-card {
+    width: 420px;
+    padding: 40px 36px;
+    border-radius: 24px;
+  }
+
+  .login-title {
+    font-size: 30px;
+  }
+
+  .login-subtitle {
+    font-size: 20px;
+  }
+
+  .login-input {
+    height: 48px;
+    font-size: 14px;
+  }
+
+  .login-button {
+    height: 50px;
+    font-size: 16px;
+  }
+}
+
+
+
+/* ============================================================
+   📱 MOBILE (até 720px)
+   ============================================================ */
+@media (max-width: 720px) {
+  .login-bg {
+    padding: 20px;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .login-card {
+    width: 100%;
+    max-width: 380px;
+
+    padding: 34px 26px;
+    border-radius: 22px;
+
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+    gap: 20px;
+  }
+
+  .login-logo {
+    width: 95px;
+    margin-bottom: 4px;
+  }
+
+  .login-title {
+    font-size: 26px;
+  }
+
+  .login-subtitle {
+    font-size: 18px;
+    margin-top: -6px;
+  }
+
+  .login-field {
+    gap: 4px;
+  }
+
+  .login-label {
+    font-size: 13px;
+  }
+
+  .login-input {
+    height: 46px;
+    border-radius: 10px;
+    font-size: 14px;
+    padding: 0 12px;
+  }
+
+  .login-button {
+    height: 48px;
+    font-size: 15px;
+    border-radius: 10px;
+  }
+
+  .login-forgot {
+    font-size: 13px;
+  }
+
+  .login-footer {
+    font-size: 13px;
+    margin-top: 0;
+  }
+}
+
+
+/* ============================================================
+   📱 MOBILE PEQUENO (até 480px)
+   ============================================================ */
+@media (max-width: 480px) {
+  .login-card {
+    max-width: 340px;
+    padding: 28px 22px;
+    gap: 16px;
+  }
+
+  .login-logo {
+    width: 80px;
+  }
+
+  .login-title {
+    font-size: 22px;
+  }
+
+  .login-subtitle {
+    font-size: 16px;
+  }
+
+  .login-input {
+    height: 44px;
+    font-size: 13px;
+  }
+
+  .login-button {
+    height: 46px;
+    font-size: 14px;
+  }
+
+  .login-footer {
+    font-size: 12px;
+  }
+}
